@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   auto_size_text: ^3.0.0
+  animated_flip_counter: ^0.3.4
   flutter:
     sdk: flutter
 
