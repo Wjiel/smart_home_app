@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_home_app/Widgets/CustomNavigationBar.dart';
 import 'package:smart_home_app/home_screen/Widgets/GridViewItem.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _listKey.currentState!.insertItem(itemCount);
           itemCount++;
 
-          if (itemCount == 4) timer.cancel();
+          if (itemCount == data.length) timer.cancel();
         });
       });
     });
@@ -71,14 +72,30 @@ class _HomeScreenState extends State<HomeScreen> {
       "trackColor": Color(0xFFd8fdb6),
       "isBlack": true,
     },
+    {
+      'title': 'Dining Room',
+      "countDevices": 7,
+      "imageAsset": 'assets/images/spageti.png',
+      "backgroundColorContainer": Color(0xFFf3ffe9),
+      "trackColor": Color(0xFFd8fdb6),
+      "isBlack": true,
+    },
   ];
+
+  final pageController = PageController();
+  final scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: CustomNavigationBar(
+        pageController: pageController,
+        scrollController: scrollController,
+      ),
       backgroundColor: Colors.white,
       body: ListView(
+        controller: scrollController,
         padding: EdgeInsets.symmetric(vertical: 40),
         children: [
           Padding(
